@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blueking Bionic Converter</title>
+    <!-- <style>
+      /* Add your styling for the active link here */
+        @media (min-width: 768px) {.scrollspy-link.active-link {
+        color: #00cec9 !important;
+        /* Add any other styles you want for the active link */
+      }}
+    </style> -->
+    
+   
+    
+    <!-- Theme Switcher Script -->
+    <script>
+        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+        if (
+          localStorage.getItem("color-theme") === "dark" ||
+          (!("color-theme" in localStorage) &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ) {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+      </script>
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../node_modules/flowbite/dist/flowbite.min.css">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.cdnfonts.com/css/king-richard" rel="stylesheet">
+</head>
+<body class="bg-slate-300 dark:bg-gray-950 dark:text-white">
+  <nav
+  class="bg-[#172153]   w-full z-20 top-0 left-0 border-transparent fixed"
+>
+  <div
+    class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2"
+  >
+    <a href="./bionic.html" class="flex items-center ms-5 md:ms-0">
+      <img
+        src="./images/blueking-naked.png"
+        class="h-8 lg:h-16 md:h-16  "
+        alt="Blueking Bionic Converter™"
+      />
+     <h1 class="font-king-richard text-lg text-gray-200 lg:text-xl">Blueking Bionic Converter</h1>
+    </a>
+    <div class="flex md:order-2 ">
+     
+      <button
+        id="theme-toggle"
+        type="button"
+        class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2 lg:p-2.5 ms-1.5 me-1.5 lg:ms-2 lg:me-2"
+      >
+        <svg
+          id="theme-toggle-dark-icon"
+          class="hidden w-4 h-4 lg:w-5 lg:h-5"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+          ></path>
+        </svg>
+        <svg
+          id="theme-toggle-light-icon"
+          class="hidden w-4 h-4 lg:w-5 lg:h-5"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100-2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+      </button>
+
+      <button
+        data-collapse-toggle="navbar-sticky"
+        type="button"
+        class="inline-flex items-center p-1.5 w-8 h-8 lg:w-10 me-5 sm:me-10 lg:h-10 justify-center text-xs lg:text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        aria-controls="navbar-sticky"
+        aria-expanded="false"
+      >
+        <span class="sr-only">Open main menu</span>
+        <svg
+          class="w-4 h-4 lg:w-5 lg:h-5"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 17 14"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M1 1h15M1 7h15M1 13h15"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      class="items-center mx-auto justify-between hidden w-full md:flex md:w-auto md:order-1"
+      id="navbar-sticky"
+    >
+      <ul
+        class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:mr-32 lg:mr-40 md:space-x-8 md:mt-0 md:border-0 md:bg-[#172153] dark:bg-gray-800 md:dark:bg-[#172153] dark:border-gray-700"
+      >
+        <li>
+          <a
+            href="#home"
+            class="scrollspy-link block py-2 pl-3 pr-4 text-gray-200 dark:text-gray-200 bg-[#172153] rounded hover:bg-blue-900 md:hover:bg-transparent md:hover:text-[#00cec9]  md:p-0 md:dark:hover:text-[#00cec9] dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+          
+            >Home</a
+          >
+        </li>
+        <li>
+          <a
+            href="#about"
+            class="scrollspy-link block py-2 pl-3 pr-4 text-[#172153] rounded hover:bg-gray-400 md:hover:bg-transparent md:text-gray-200 md:hover:text-[#00cec9] md:p-0 md:dark:hover:text-[#00cec9] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+            >About</a
+          >
+        </li>
+        <li>
+          <a
+            href="#services"
+            class="scrollspy-link block py-2 pl-3 pr-4 text-[#172153] rounded hover:bg-gray-400 md:hover:bg-transparent md:text-gray-200 md:hover:text-[#00cec9] md:p-0 md:dark:hover:text-[#00cec9] dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+            >Services</a
+          >
+        </li>
+        <li>
+          <a
+            href="#contact"
+            class="scrollspy-link block py-2 pl-3 pr-4 text-[#172153] rounded hover:bg-gray-400 md:hover:bg-transparent md:text-gray-200 md:hover:text-[#00cec9] md:dark:hover:text-[#00cec9] md:p-0 md:dark:text-white dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+            >Contact</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  
+
+    <!-- Main Content -->
+    <main class="mt-20  bg-slate-300 dark:bg-gray-950 " >
+        <!-- Introduction Section -->
+        <section id="home" class="scroll-mt-20 text-black p-5 md:p-16  dark:text-white   text-center mb-4 md:mb-1">
+            <!-- <h2 class="text-2xl font-bold mb-4">What is Bionic Text?</h2>
+            <p class="px-72 text-xl text-center font-medium">
+                Bionic Text is an innovative reading technique that enhances reading speed and comprehension. It involves emphasizing the first half of each word, making it easier for your brain to process and understand the text.
+            </p> -->
+            <p class="text-xl md:text-2xl lg:text-3xl md:px-24 lg:px-52 xl:px-72 text-center font-medium" id="head">
+                Try our Blueking Bionic Converter to experience the benefits of <b>Bio</b>nic <b>Read</b>ing.
+            </p>
+        </section>
+
+        <!-- Text Converter -->
+        <section>
+        <div class="max-w-xl mx-auto bg-slate-200 dark:bg-gray-900  py-10 p-10 rounded-md shadow-md">
+           
+            <h1 class="text-2xl font-semibold mb-4 text-center" >Bionic Text Converter</h1>
+            <textarea id="inputText" rows="5" class="w-full p-2 border rounded-md mb-4 bg-slate-200 dark:bg-gray-900 placeholder:text-gray-700 placeholder:dark:text-gray-300  focus:border-green-500 focus:ring focus:ring-green-200" placeholder="Enter or paste your text here..."></textarea>
+            <!-- File Upload Input -->
+           <div class="overflow-x-clip overflow-ellipsis">
+        <input type="file" id="fileInput" accept=".doc,.docx" class="mb-4">
+        <p class="p-0 itali text-gray-600 dark:text-gray-400 -mt-5 mb-5">only .docx supported for now</p>
+           </div>
+            <button onclick="convertToBionic()" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 mb-4 mx-auto flex justify-center max-sm:w-full">
+              Convert to Bionic
+          </button>
+          
+
+            <div id="output" class="border rounded-md bg-gray-100 dark:bg-gray-200 text-black p-4 mb-4"></div>
+            <div class="flex flex-col sm:flex-row">
+              <button onclick="printOutput()" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 mb-2 sm:mb-0 sm:mr-2">
+                  Print / Save as PDF
+              </button>
+          
+              <button onclick="copyToClipboard()" class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 mb-2 sm:mb-0 sm:mr-2">
+                  Copy HTML to Clipboard
+              </button>
+          
+              <a href="bionic.html" class="bg-red-700 hover:bg-red-800 text-white text-center px-4 py-2 rounded-md cursor-pointer">
+                  Clear Output
+              </a>
+          </div>
+          
+          </div>
+   </section>
+   <section id="about" class="scroll-mt-20">
+    <div class="container mx-auto p-8 mt-20">
+      <h1 class="text-3xl text-center font-bold mb-6">About Blueking Bionic Converter</h1>
+
+      <div class="bg-transparent text-center p-6 rounded-lg shadow-lg">
+          <p class="text-lg leading-relaxed">
+              At Blueking, we're pioneering the future of reading with our Bionic Converter. Our innovative tool enhances your reading experience by emphasizing the first half of each word, allowing you to read faster and understand better. Whether you're a student, professional, or avid reader, Bionic Text opens new doors to efficient reading, making knowledge accessible at the speed of thought. Join us in revolutionizing the way we consume written content with Blueking Bionic Converter.
+          </p>
+      </div>
+  </div>
+   </section>
+   <section id="services" class="scroll-mt-20">
+    <div class="container mx-auto py-20 xl:p-52 -mb-20 text-center">
+      <h1 class="text-3xl font-bold mb-4">What is Bionic Text?</h1>
+
+      <div class="bg-transparent text-black dark:text-white p-6 rounded-lg shadow-lg">
+          <p class="text-lg leading-relaxed mb-12">
+              Bionic Text is a revolutionary approach to reading that harnesses the power of human cognition and technology to enhance reading speed and comprehension. Developed as a modern solution to the challenges of information overload in the digital age, Bionic Text represents a new way of engaging with written content. By strategically emphasizing certain parts of words, this technique enables readers to process information more efficiently, ultimately making the reading experience faster, more enjoyable, and more effective.
+          </p>
+
+          <!-- example -->
+          <h1 class="text-3xl font-bold mb-6">Standard Text vs. Bionic Text Comparison</h1>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Standard Text -->
+              <div class="bg-slate-100 dark:bg-gray-200 text-black p-6 rounded-lg shadow-lg">
+                  <h2 class="text-2xl font-semibold mb-4">Standard Text</h2>
+                  <p class="text-lg leading-relaxed">
+                      Standard text is the traditional way of reading. Words are presented in their complete form without any emphasis on specific parts. While this method is familiar to most readers, it may not always be the most efficient way to process information, especially when dealing with extensive content.
+                  </p>
+              </div>
+  
+              <!-- Bionic Text -->
+              <div class="bg-slate-100 dark:bg-gray-200 text-black p-6 rounded-lg shadow-lg">
+                  <h2 class="text-2xl font-semibold mb-4">Bionic Text</h2>
+                  <p class="text-lg leading-relaxed">
+<span class="font-bold"></span> <span class="font-bold">Bio</span>nic <span class="font-bold">Te</span>xt <span class="font-bold">i</span>s <span class="font-bold">a</span>n <span class="font-bold">innov</span>ative <span class="font-bold">read</span>ing <span class="font-bold">techn</span>ique <span class="font-bold">th</span>at <span class="font-bold">empha</span>sizes <span class="font-bold">th</span>e <span class="font-bold">fir</span>st <span class="font-bold">ha</span>lf <span class="font-bold">o</span>f <span class="font-bold">ea</span>ch <span class="font-bold">wor</span>d, <span class="font-bold">mak</span>ing <span class="font-bold">i</span>t <span class="font-bold">eas</span>ier <span class="font-bold">fo</span>r <span class="font-bold">yo</span>ur <span class="font-bold">bra</span>in <span class="font-bold">t</span>o <span class="font-bold">proc</span>ess <span class="font-bold">an</span>d <span class="font-bold">under</span>stand <span class="font-bold">th</span>e <span class="font-bold">tex</span>t. <span class="font-bold">B</span>y <span class="font-bold">strateg</span>ically <span class="font-bold">alte</span>ring <span class="font-bold">th</span>e <span class="font-bold">presen</span>tation <span class="font-bold">o</span>f <span class="font-bold">wor</span>ds, <span class="font-bold">Bio</span>nic <span class="font-bold">Te</span>xt <span class="font-bold">ai</span>ms <span class="font-bold">t</span>o <span class="font-bold">enha</span>nce <span class="font-bold">read</span>ing <span class="font-bold">spe</span>ed <span class="font-bold">an</span>d <span class="font-bold">compreh</span>ension, <span class="font-bold">provi</span>ding <span class="font-bold">a</span> <span class="font-bold">mo</span>re <span class="font-bold">effic</span>ient <span class="font-bold">wa</span>y <span class="font-bold">t</span>o <span class="font-bold">cons</span>ume <span class="font-bold">writ</span>ten <span class="font-bold">cont</span>ent. <span class="font-bold"></span>
+                  </p>
+              </div>
+          </div>
+
+
+          <h2 class="text-2xl font-bold mt-12 mb-4 ">Understanding Bionic Text:</h2>
+          <p class="text-lg leading-relaxed">
+              At its core, Bionic Text is about optimizing the way we read and absorb written material. It accomplishes this by focusing on the first half of each word, typically in a bold or emphasized format, while keeping the second half unaltered. This seemingly subtle alteration capitalizes on the brain's remarkable ability to recognize patterns and extract meaning from text.
+          </p>
+
+          <!-- Add more content sections as needed -->
+
+          <h2 class="text-2xl font-bold mt-6 mb-4">Key Benefits of Bionic Text:</h2>
+          <ul class="list-disc pl-6 text-lg leading-relaxed text-justify">
+              <li>Enhanced Speed: Bionic Text significantly accelerates reading speed, enabling individuals to process information faster without compromising comprehension.</li>
+              <li>Improved Comprehension: Contrary to mere speed-reading techniques, Bionic Text places a strong emphasis on comprehension. By focusing on key elements of words, readers not only read faster but also understand better.</li>
+              <li>Reduced Fatigue: Reading extensive texts can be mentally exhausting. Bionic Text reduces the cognitive load, making reading less tiring and more enjoyable.</li>
+              <li>Adaptability: Bionic Text is adaptable to various forms of content, from books and articles to digital documents. It can be employed in both print and digital mediums.</li>
+          </ul>
+
+          <!-- Add more content sections as needed -->
+
+          <h2 class="text-2xl font-bold mt-6 mb-4">Applications of Bionic Text:</h2>
+          <ul class="list-disc pl-6 text-lg leading-relaxed text-justify">
+              <li>Academic Reading: Students can use Bionic Text to improve their efficiency in studying and reviewing academic texts, helping them absorb complex subject matter more effectively.</li>
+              <li>Professional Reading: Professionals who deal with extensive documentation, such as researchers, lawyers, and analysts, can benefit from Bionic Text to process large volumes of information efficiently.</li>
+              <li>Content Consumption: Everyday readers can employ Bionic Text to enhance their reading experience with books, articles, and online content.</li>
+          </ul>
+
+          <!-- Add more content sections as needed -->
+      </div>
+  </div>
+   </section>
+   <section class="py-10  mt-16 md:mt-2 scroll-mt-20" id="contact">
+    <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl font-bold mb-6 text-gray-800 dark:text-white">Contact Us</h1>
+
+        <div class="max-w-3xl mx-auto  bg-opacity-90 p-6 rounded-lg shadow-lg bg-slate-200 dark:bg-gray-900 hover:drop-shadow-2xl focus-within:drop-shadow-2xl hover:shadow-2xl focus-within:shadow-2xl ">
+            <form action="#" method="POST" class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="name" class="block text-lg font-semibold mb-2 text-gray-800 dark:text-white">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="John Doe"
+                            class="w-full px-4 py-2 border border-gray-300 rounded  dark:border-gray-700 text-gray-800 dark:text-white bg-slate-200 dark:bg-gray-900 focus:border-green-500 focus:ring focus:ring-green-200">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-lg font-semibold mb-2  text-gray-800 dark:text-white">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="john@example.com"
+                            class="w-full px-4 py-2 border bg-slate-200 border-gray-300 rounded text-gray-800 dark:text-white dark:bg-gray-900 focus:border-green-500 focus:ring focus:ring-green-200 dark:border-gray-700">
+                    </div>
+                </div>
+                <div>
+                    <label for="message" class="block text-lg font-semibold mb-2  text-gray-800 dark:text-white">Message</label>
+                    <textarea id="message" name="message" rows="6" placeholder="Your message here..."
+                        class="w-full px-4 py-2 border border-gray-300 rounded text-gray-800 dark:text-white bg-slate-200 dark:bg-gray-900 focus:border-green-500 focus:ring focus:ring-green-200 dark:border-gray-700"></textarea>
+                </div>
+                <button type="submit"
+                    class="w-full py-3 rounded text-center text-slate-200 font-semibold bg-[#00cec9] hover:bg-[#81ecec] focus:ring-green-200   focus:drop-shadow-xl">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+</main>
+    <!-- Footer -->
+   
+<footer class="bg-[#172153] ">
+  <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+      <div class="md:flex md:justify-between">
+        <div class="mb-6 md:mb-0">
+          <a href="./bionic.html" class="flex items-center ">
+            <img
+              src="./images/blueking-naked.png"
+              class="h-12 mr-1"
+              alt="Blueking Bionic Converter™"
+            />
+           <h1 class="self-center text-slate-200 text-2xl max-sm:text-xl pe-10 font-semibold whitespace-nowrap font-king-richard ">Blueking Bionic Converter</h1>
+          </a>
+        </div>
+        <div class="grid grid-cols-2 gap-6 sm:gap-6 sm:grid-cols-2 pe-10 ps-2">
+            <!-- <div>
+                <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
+                <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                    <li class="mb-4">
+                        <a href="https://flowbite.com/" class="hover:underline">Flowbite</a>
+                    </li>
+                    <li>
+                        <a href="https://tailwindcss.com/" class="hover:underline">Tailwind CSS</a>
+                    </li>
+                </ul>
+            </div> -->
+            <div>
+                <h2 class="mb-6 text-sm font-semibold text-slate-200 uppercase dark:text-white">Follow us</h2>
+                <ul class="text-gray-400 dark:text-gray-400 font-medium">
+                    <li class="mb-4">
+                        <a href="https://github.com/Godofmachine" class="hover:underline ">Github</a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/Blueking001" class="hover:underline">Twitter</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="mb-6 text-sm font-semibold text-slate-200 uppercase dark:text-white">Legal</h2>
+                <ul class="text-gray-400 dark:text-gray-400 font-medium">
+                    <li class="mb-4">
+                        <a href="#" class="hover:underline">Privacy Policy</a>
+                    </li>
+                    <li>
+                        <a href="#" class="hover:underline">Terms &amp; Conditions</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+    <div class="sm:flex sm:items-center sm:justify-between">
+        <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="bionic.html" class="hover:underline">Blueking Bionic Converter™</a>. All Rights Reserved.
+        </span>
+        <div class="flex mt-4 space-x-5 sm:justify-center sm:mt-0 pe-10">
+            <!-- <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 8 19">
+                      <path fill-rule="evenodd" d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z" clip-rule="evenodd"/>
+                  </svg>
+                <span class="sr-only">Facebook page</span>
+            </a>
+            <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 21 16">
+                      <path d="M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM6.678 10.813a1.941 1.941 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z"/>
+                  </svg>
+                <span class="sr-only">Discord community</span>
+            </a> -->
+            <a href="https://twitter.com/Blueking001" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 17">
+                  <path fill-rule="evenodd" d="M20 1.892a8.178 8.178 0 0 1-2.355.635 4.074 4.074 0 0 0 1.8-2.235 8.344 8.344 0 0 1-2.605.98A4.13 4.13 0 0 0 13.85 0a4.068 4.068 0 0 0-4.1 4.038 4 4 0 0 0 .105.919A11.705 11.705 0 0 1 1.4.734a4.006 4.006 0 0 0 1.268 5.392 4.165 4.165 0 0 1-1.859-.5v.05A4.057 4.057 0 0 0 4.1 9.635a4.19 4.19 0 0 1-1.856.07 4.108 4.108 0 0 0 3.831 2.807A8.36 8.36 0 0 1 0 14.184 11.732 11.732 0 0 0 6.291 16 11.502 11.502 0 0 0 17.964 4.5c0-.177 0-.35-.012-.523A8.143 8.143 0 0 0 20 1.892Z" clip-rule="evenodd"/>
+              </svg>
+                <span class="sr-only">Twitter page</span>
+            </a>
+            <a href="https://github.com/Godofmachine" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z" clip-rule="evenodd"/>
+                </svg>
+                <span class="sr-only">GitHub account</span>
+            </a>
+            <!-- <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 0a10 10 0 1 0 10 10A10.009 10.009 0 0 0 10 0Zm6.613 4.614a8.523 8.523 0 0 1 1.93 5.32 20.094 20.094 0 0 0-5.949-.274c-.059-.149-.122-.292-.184-.441a23.879 23.879 0 0 0-.566-1.239 11.41 11.41 0 0 0 4.769-3.366ZM8 1.707a8.821 8.821 0 0 1 2-.238 8.5 8.5 0 0 1 5.664 2.152 9.608 9.608 0 0 1-4.476 3.087A45.758 45.758 0 0 0 8 1.707ZM1.642 8.262a8.57 8.57 0 0 1 4.73-5.981A53.998 53.998 0 0 1 9.54 7.222a32.078 32.078 0 0 1-7.9 1.04h.002Zm2.01 7.46a8.51 8.51 0 0 1-2.2-5.707v-.262a31.64 31.64 0 0 0 8.777-1.219c.243.477.477.964.692 1.449-.114.032-.227.067-.336.1a13.569 13.569 0 0 0-6.942 5.636l.009.003ZM10 18.556a8.508 8.508 0 0 1-5.243-1.8 11.717 11.717 0 0 1 6.7-5.332.509.509 0 0 1 .055-.02 35.65 35.65 0 0 1 1.819 6.476 8.476 8.476 0 0 1-3.331.676Zm4.772-1.462A37.232 37.232 0 0 0 13.113 11a12.513 12.513 0 0 1 5.321.364 8.56 8.56 0 0 1-3.66 5.73h-.002Z" clip-rule="evenodd"/>
+              </svg>
+                <span class="sr-only">Dribbble account</span>
+            </a> -->
+        </div>
+    </div>
+  </div>
+</footer>
+
+
+
+    <script src="../node_modules/flowbite/dist/flowbite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.5.0/mammoth.browser.min.js"></script>
+    
+
+    <script>
+      
+    function convertToBionic() {
+    const inputText = document.getElementById("inputText").value;
+    
+    if (inputText.trim() === "") {
+        alert("Input is empty. Please enter text.");
+        return;
+    }
+    
+    const words = inputText.split(/\s+/); // Split by one or more spaces
+
+    const bionicWords = words.map(word => {
+        const halfLength = Math.ceil(word.length / 2);
+        const firstHalf = word.slice(0, halfLength);
+        const secondHalf = word.slice(halfLength);
+        return `<span class="font-bold">${firstHalf}</span>${secondHalf}`;
+    });
+
+    document.getElementById("output").innerHTML = bionicWords.join(" ");
+}
+
+function printOutput() {
+    const outputHTML = document.getElementById("output").innerHTML;
+
+    if (outputHTML.trim() === "") {
+        alert("Nothing to print. Please convert text first.");
+        return;
+    }
+
+    const printWindow = window.open('', '_blank');
+    printWindow.document.open();
+    printWindow.document.write(`
+        <html>
+            <head>
+                <title>Bionic Text</title>
+                <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+                <style>
+                    .font-bold {
+                        font-weight: bold;
+                    }
+                </style>
+            </head>
+            <body>
+                <div>${outputHTML}</div>
+            </body>
+        </html>
+    `);
+    printWindow.document.close();
+    printWindow.print();
+}
+
+function copyToClipboard() {
+    const outputHTML = document.getElementById("output").innerHTML;
+    
+    if (outputHTML.trim() === "") {
+        alert("Nothing to copy. Please convert text first.");
+        return;
+    }
+    
+    const tempTextArea = document.createElement("textarea");
+    tempTextArea.value = outputHTML;
+    document.body.appendChild(tempTextArea);
+    tempTextArea.select();
+    document.execCommand("copy");
+    document.body.removeChild(tempTextArea);
+    
+    alert("HTML content copied to clipboard!");
+}
+// Handle file input change
+document.getElementById("fileInput").addEventListener("change", function () {
+            const fileInput = this;
+            const selectedFile = fileInput.files[0];
+
+            if (!selectedFile) return;
+
+            if (selectedFile.name.endsWith(".docx")) {
+                // Use Mammoth to convert .docx to plain text
+                const reader = new FileReader();
+                reader.onload = function () {
+                    const arrayBuffer = reader.result;
+                    const blob = new Blob([arrayBuffer], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
+
+                    mammoth.extractRawText({ arrayBuffer: blob })
+                        .then(function (result) {
+                            document.getElementById("inputText").value = result.value;
+                        })
+                        .catch(function (error) {
+                            console.error("Error converting .docx:", error);
+                            alert("Error converting .docx file.");
+                        });
+                };
+
+                reader.readAsArrayBuffer(selectedFile);
+            } else {
+                alert("Unsupported file format. Please upload a .docx file.");
+            }
+        });
+        
+    </script>
+
+
+    <script>var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        
+        // Change the icons inside the button based on previous settings
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+        
+        var themeToggleBtn = document.getElementById('theme-toggle');
+        
+        themeToggleBtn.addEventListener('click', function() {
+        
+            // toggle icons inside button
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+        
+            // if set via local storage previously
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+        
+            // if NOT set via local storage previously
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+            
+        });
+        </script>
+
+<!-- <script>
+  // Function to update the active navigation link based on scroll position
+function updateActiveLinkScroll() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.scrollspy-link');
+
+  sections.forEach((section, index) => {
+    const top = section.offsetTop;
+    const bottom = top + section.clientHeight;
+
+    if (window.scrollY >= top && window.scrollY <= bottom) {
+      // Add a custom class to the active link
+      navLinks[index].classList.add('active-link');
+    } else {
+      // Remove the custom class from other links
+      navLinks[index].classList.remove('active-link');
+    }
+  });
+}
+
+// Attach an event listener to the window's scroll event
+window.addEventListener('scroll', updateActiveLinkScroll);
+
+// Function to toggle the active navigation link based on click event
+function updateActiveLinkClick(clickedLink) {
+  const navLinks = document.querySelectorAll('.scrollspy-link');
+
+  // Remove the 'active-link' class from all links
+  navLinks.forEach((link) => link.classList.remove('active-link'));
+
+  // Add the 'active-link' class to the clicked link
+  clickedLink.classList.add('active-link');
+}
+
+// Get references to your navigation links
+const navLinks = document.querySelectorAll('.scrollspy-link');
+
+// Add a click event listener to each navigation link
+navLinks.forEach((link) => {
+  link.addEventListener('click', () => {
+    updateActiveLinkClick(link);
+  });
+});
+
+// Call the function initially to set the active link for scroll
+updateActiveLinkScroll();
+
+</script> -->
+
+
+
+</html>
