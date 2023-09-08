@@ -1475,6 +1475,12 @@ input:checked + .toggle-bg {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
 }
 
+.shadow-sm {
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05) !important;
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color) !important;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
+}
+
 .outline {
   outline-style: solid !important;
 }
@@ -2093,5 +2099,10 @@ input:checked + .toggle-bg {
   .xl\:px-72 {
     padding-left: 18rem !important;
     padding-right: 18rem !important;
+  }
+
+  .xl\:px-52 {
+    padding-left: 13rem !important;
+    padding-right: 13rem !important;
   }
 }
