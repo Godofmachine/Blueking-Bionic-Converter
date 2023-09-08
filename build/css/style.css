@@ -1292,6 +1292,11 @@ input:checked + .toggle-bg {
   padding-right: 2.5rem !important;
 }
 
+.px-20 {
+  padding-left: 5rem !important;
+  padding-right: 5rem !important;
+}
+
 .pe-10 {
   -webkit-padding-end: 2.5rem !important;
           padding-inline-end: 2.5rem !important;
@@ -1885,6 +1890,11 @@ input:checked + .toggle-bg {
 
   .sm\:gap-6 {
     gap: 1.5rem !important;
+  }
+
+  .sm\:px-20 {
+    padding-left: 5rem !important;
+    padding-right: 5rem !important;
   }
 
   .sm\:text-center {
