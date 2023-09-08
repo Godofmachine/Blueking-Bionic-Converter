@@ -923,6 +923,30 @@ input:checked + .toggle-bg {
   scroll-margin-top: 5rem !important;
 }
 
+.scroll-mt-8 {
+  scroll-margin-top: 2rem !important;
+}
+
+.scroll-mt-28 {
+  scroll-margin-top: 7rem !important;
+}
+
+.scroll-mt-36 {
+  scroll-margin-top: 9rem !important;
+}
+
+.scroll-mt-40 {
+  scroll-margin-top: 10rem !important;
+}
+
+.scroll-mt-44 {
+  scroll-margin-top: 11rem !important;
+}
+
+.scroll-mt-48 {
+  scroll-margin-top: 12rem !important;
+}
+
 .list-disc {
   list-style-type: disc !important;
 }
