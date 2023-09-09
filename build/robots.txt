@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://blueking-bionic-converter.vercel.app/sitmap.xml
