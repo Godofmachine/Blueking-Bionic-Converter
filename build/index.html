@@ -11,6 +11,15 @@
         /* Add any other styles you want for the active link */
       }}
     </style> -->
+
+
+    <style>
+      /* Reduce vertical height of <br> elements */
+      .line-break {
+          line-height: 0.5; /* Adjust the value as needed to control the height */
+      }
+  </style>
+  
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
    
     
@@ -167,22 +176,27 @@
 
         <!-- Text Converter -->
         <section>
-        <div class="max-w-xl mx-auto bg-slate-200 dark:bg-gray-900  py-10 p-10 rounded-md shadow-md">
+        <div id="up" class="max-w-xl mx-auto bg-slate-200 dark:bg-gray-900  py-10 p-10 rounded-md shadow-md">
            
             <h1 class="text-2xl font-semibold mb-4 text-center" >Bionic Text Converter</h1>
             <textarea id="inputText" rows="5" class="w-full p-2 border rounded-md mb-4 bg-slate-200 dark:bg-gray-900 placeholder:text-gray-700 placeholder:dark:text-gray-300  focus:border-green-500 focus:ring focus:ring-green-200" placeholder="Enter or paste your text here..."></textarea>
             <!-- File Upload Input -->
            <div class="overflow-x-clip overflow-ellipsis">
         <input type="file" id="fileInput" accept=".doc,.docx" class="mb-4">
-        <p class="p-0 itali text-gray-600 dark:text-gray-400 -mt-5 mb-5">only .docx supported for now</p>
+        <p class="p-0 italic text-gray-600 dark:text-gray-400 -mt-5 mb-5">only .docx supported for now</p>
            </div>
             <button onclick="convertToBionic()" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 mb-4 mx-auto flex justify-center max-sm:w-full">
               Convert to Bionic
           </button>
+          <!-- <a href="#down" id="downLink" class="block w-full h-full" >
+            <button class="bg-blue-900 text-white px-10 py-2 rounded-md hover:bg-blue-600 mb-4 mx-auto flex justify-center max-sm:w-full">
+                Down
+            </button>
+        </a> -->
           
 
-            <div id="output" class="border rounded-md bg-gray-100 dark:bg-gray-200 text-black p-4 mb-4"></div>
-            <div class="flex flex-col sm:flex-row">
+            <div id="output" class="border rounded-md bg-gray-100 dark:bg-gray-200 text-black p-5 max-h-96 overflow-y-scroll mb-4"></div>
+            <div id="down" class="flex flex-col sm:flex-row scroll-mt-40 mb-4">
               <button onclick="printOutput()" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 mb-2 sm:mb-0 sm:mr-2">
                   Print / Save as PDF
               </button>
@@ -194,7 +208,14 @@
               <a href="index.html" class="bg-red-700 hover:bg-red-800 text-white text-center px-4 py-2 rounded-md cursor-pointer">
                   Clear Output
               </a>
+             
+              
           </div>
+          <!-- <a href="#up"  class="block w-full h-full" >
+            <button class="bg-blue-900 text-white px-10 py-2 rounded-md hover:bg-blue-600 mb-4 mx-auto flex justify-center max-sm:w-full">
+                Up
+            </button>
+        </a> -->
           
           </div>
    </section>
@@ -272,7 +293,7 @@
     <div class="container mx-auto px-4 text-center">
         <h1 class="text-4xl font-bold mb-6 text-gray-800 dark:text-white">Contact Us</h1>
 
-        <div class="max-w-3xl mx-auto  bg-opacity-90 p-6 rounded-lg shadow-lg bg-slate-200 dark:bg-gray-900 hover:drop-shadow-2xl focus-within:drop-shadow-2xl hover:shadow-2xl focus-within:shadow-2xl ">
+        <div class="max-w-3xl mx-auto  p-6 rounded-lg shadow-lg bg-slate-200 dark:bg-gray-950 dark:border border-gray-900 hover:drop-shadow-2xl focus-within:drop-shadow-2xl hover:shadow-2xl focus-within:shadow-2xl ">
             <form action="https://formspree.io/f/xwkdbzea" method="POST" class="space-y-4">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
@@ -401,26 +422,43 @@
     
 
     <script>
-      
-    function convertToBionic() {
+ function convertToBionic() {
     const inputText = document.getElementById("inputText").value;
-    
+
     if (inputText.trim() === "") {
         alert("Input is empty. Please enter text.");
         return;
     }
-    
-    const words = inputText.split(/\s+/); // Split by one or more spaces
 
-    const bionicWords = words.map(word => {
-        const halfLength = Math.ceil(word.length / 2);
-        const firstHalf = word.slice(0, halfLength);
-        const secondHalf = word.slice(halfLength);
-        return `<span class="font-bold">${firstHalf}</span>${secondHalf}`;
+    // Preserve line breaks and paragraphs
+    const paragraphs = inputText.split(/\n/);
+    const bionicParagraphs = paragraphs.map(paragraph => {
+        // Split each paragraph into lines
+        const lines = paragraph.split(/\r/);
+        const bionicLines = lines.map(line => {
+            // Split each line into words
+            const words = line.split(/\s+/);
+            const bionicWords = words.map(word => {
+                const halfLength = Math.ceil(word.length / 2);
+                const firstHalf = word.slice(0, halfLength);
+                const secondHalf = word.slice(halfLength);
+                return `<span class="font-bold">${firstHalf}</span>${secondHalf}`;
+            });
+            return bionicWords.join(" ");
+        });
+        return bionicLines.join("<br>");
+        
     });
 
-    document.getElementById("output").innerHTML = bionicWords.join(" ");
+    document.getElementById("output").innerHTML = bionicParagraphs.join("<br class='line-break'>");
+
+    //    // Show the links if the conversion is successful
+    //    document.getElementById("upLink").style.display = "inline-block";
+    // document.getElementById("downLink").style.display = "block";
 }
+
+
+
 
 function printOutput() {
     const outputHTML = document.getElementById("output").innerHTML;
@@ -441,7 +479,17 @@ function printOutput() {
                     .font-bold {
                         font-weight: bold;
                     }
-                </style>
+                    body{
+                
+                      padding:10%;
+                    }
+                  
+    /* Reduce vertical height of <br> elements */
+    .line-break {
+        line-height: 0.5; /* Adjust the value as needed to control the height */
+    }
+</style>
+
             </head>
             <body>
                 <div>${outputHTML}</div>
